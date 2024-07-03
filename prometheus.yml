@@ -2,7 +2,17 @@ global:
   scrape_interval: 5s
 
 scrape_configs:
-  - job_name: 'fastapi'
-    scrape_interval: 5s
+  - job_name: 'fastapi_metrics'
+    metrics_path: '/prometheus-metrics'
     static_configs:
-      - targets: ['host.docker.internal:8001']
+      - targets: ['fastapi_app:8001']
+
+  - job_name: 'cadvisor'
+    # metrics_path: '/cadvisor-metrics'
+    static_configs:
+      - targets: ['cadvisor:8080'] #changed port to 8080 (8001 no longer running)
+
+  # - job_name: 'combined_metrics'
+  #   metrics_path: '/combined-metrics'
+  #   static_configs:
+  #     - targets: ['fastapi_app:8001']
