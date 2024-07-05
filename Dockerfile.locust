@@ -12,4 +12,5 @@ COPY . .
 
 EXPOSE 8089
 
-CMD ["locust", "-f", "locust.py", "--host=http://fastapi:8000"]
+# CMD ["locust", "-f", "locust.py", "--host=http://fastapi:8000"]
+CMD ["/bin/sh", "/mnt/locust/loadtesting.sh"]
